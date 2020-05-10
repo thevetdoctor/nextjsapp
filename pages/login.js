@@ -1,24 +1,22 @@
-import Head from "next/head";
+import Head from 'next/head'
 import { useForm } from "react-hook-form";
-// import { FaArrowLeft } from 'react-icons/fa';
 
-export default function ResetPassword() {
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = () => {};
+
+function Login() {
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = () => {};
 
   return (
     <div className="container">
-      <Head>
-        <title>Fasta > Forgot Password</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="Container">
+    <Head>
+      <title>Fasta > Login </title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <div className="Container">
       <div className="FormContainer">
-        <p className="AppTitle"> 
-        {/* <span><FaArrowLeft /></span> */}
-         Fasta</p>
+        <p className="AppTitle">Fasta</p>
         <form className="FormGroup" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="FormTitle">Recover Password</h1>
+          <h1 className="FormTitle">Login</h1>
           <input className="Input"
             type="text"
             ref={register({
@@ -34,9 +32,20 @@ export default function ResetPassword() {
           {errors.email && (
             <div className="ValidationError">{errors.email.message}</div>
           )}
-          <p className="Text">Enter the email address you registered with.</p>
-          <button className="FormButton">RECOVER PASSWORD</button>
+          <input className="Input"
+            type="text"
+            ref={register({ required: "Password is required" })}
+            name="password"
+            placeholder="Password"
+          />
+          {errors.password && (
+            <div className="ValidationError">{errors.password.message}</div>
+          )}
+          <p className="Text">Forgot Password</p>
+          <button className="FormButton">LOGIN</button>
+          <p className="Text">Don&apos;t have an Account? </p>
         </form>
+          <div className="FormLink">REGISTER</div>
       </div>
     </div>
 
@@ -185,5 +194,7 @@ export default function ResetPassword() {
         }
     `}</style>
     </div>
-  )
-}
+  );
+};
+
+export default Login;
